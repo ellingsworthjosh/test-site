@@ -1,5 +1,6 @@
 ---
 layout: home
+title: home page test
 ---
 
 # test-site
