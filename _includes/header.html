@@ -5,27 +5,35 @@
     </a>
 
     <nav class="site-nav">
-      <button class="menu-toggle" aria-label="Menu">☰</button>
+      <!-- Mobile toggle -->
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="menu-icon">☰</label>
 
       <ul class="nav-menu">
         {% for item in site.data.navigation %}
-          <li class="nav-item {% if item.children %}has-children{% endif %}">
-            {% if item.url %}
-              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
-            {% else %}
-              <span class="nav-label">{{ item.title }}</span>
-            {% endif %}
-
+          <li class="nav-item">
             {% if item.children %}
-              <ul class="sub-menu">
-                {% for child in item.children %}
-                  <li>
-                    <a href="{{ child.url | relative_url }}">
-                      {{ child.title }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
+              <details>
+                <summary>
+                  {% if item.url %}
+                    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                  {% else %}
+                    {{ item.title }}
+                  {% endif %}
+                </summary>
+
+                <ul class="sub-menu">
+                  {% for child in item.children %}
+                    <li>
+                      <a href="{{ child.url | relative_url }}">
+                        {{ child.title }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </details>
+            {% else %}
+              <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
             {% endif %}
           </li>
         {% endfor %}
