@@ -23,7 +23,7 @@
   padding-left: 1rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 600px) {
   .menu-icon {
     display: block;
   }
@@ -57,7 +57,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 601px) {
   .menu-icon {
     display: none;
   }
