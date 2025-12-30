@@ -2,11 +2,13 @@
 ---
 @import "minima";
 
-/* Base nav */
-.site-nav {
-  position: relative;
+/* Hide checkboxes */
+.nav-toggle,
+.submenu-toggle {
+  display: none;
 }
 
+/* Base nav layout */
 .nav-menu {
   list-style: none;
   margin: 0;
@@ -19,49 +21,47 @@
   margin-left: 1.5rem;
 }
 
-/* Dropdown */
+/* Submenu */
 .sub-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: white;
   list-style: none;
   padding: 0.5rem 0;
-  min-width: 180px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.sub-menu li {
   margin: 0;
+  display: none;
 }
 
-.sub-menu a {
-  display: block;
-  padding: 0.5rem 1rem;
-  white-space: nowrap;
-}
-
-/* Show dropdown on hover (desktop) */
 @media (min-width: 768px) {
-  .has-children:hover .sub-menu {
+  .menu-icon,
+  .submenu-icon {
+    display: none;
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .has-children:hover > .sub-menu,
+  .has-children:focus-within > .sub-menu {
     display: block;
+  }
+
+  .sub-menu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
   }
 }
 
-
-/* Mobile nav */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-}
-
-/* Mobile layout */
 @media (max-width: 767px) {
-  .menu-toggle {
+  /* Hamburger */
+  .menu-icon {
     display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 
   .nav-menu {
@@ -70,25 +70,28 @@
     margin-top: 1rem;
   }
 
-  .nav-menu.open {
+  .nav-toggle:checked + .menu-icon + .nav-menu {
     display: flex;
   }
 
+  .nav-item {
+    margin: 0;
+  }
+
+  .parent-link {
+    pointer-events: none;
+  }
+
+  .submenu-icon {
+    float: right;
+    cursor: pointer;
+  }
+
   .sub-menu {
-    display: none;
-    position: static;
-    box-shadow: none;
     padding-left: 1rem;
   }
 
-  .nav-item.open > .sub-menu {
+  .submenu-toggle:checked ~ .sub-menu {
     display: block;
   }
-
-  .has-children > .nav-label,
-  .has-children > a {
-    cursor: pointer;
-  }
 }
-
-
